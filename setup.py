@@ -10,7 +10,7 @@ In addition, this application does not globally set any localization targets and
 
 setup(name='django-localedb',
       version=VERSION,
-      description="A django application the created a database driven version of python's locale module",
+      description="A django application that is a database driven version of python's locale module",
       long_description=LONG_DESC,
       classifiers=[
           'Programming Language :: Python',
