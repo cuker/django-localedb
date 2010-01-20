@@ -1,7 +1,7 @@
 [
     {
         "pk": 1, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%m/%d/%Y", 
@@ -75,7 +75,7 @@
     }, 
     {
         "pk": 2, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u1245\u12f3\u121c", 
             "d_fmt": "%d/%m/%Y", 
@@ -149,7 +149,7 @@
     }, 
     {
         "pk": 3, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0441\u0431 ", 
             "d_fmt": "%d.%m.%y", 
@@ -223,7 +223,7 @@
     }, 
     {
         "pk": 4, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0421\u0431 ", 
             "d_fmt": "%d.%m.%y", 
@@ -297,7 +297,7 @@
     }, 
     {
         "pk": 5, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "dis", 
             "d_fmt": "%d/%m/%Y", 
@@ -371,7 +371,7 @@
     }, 
     {
         "pk": 6, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "so", 
             "d_fmt": "%Y/%m/%d", 
@@ -445,7 +445,7 @@
     }, 
     {
         "pk": 7, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "L\u00f8r", 
             "d_fmt": "%d.%m.%Y", 
@@ -519,7 +519,7 @@
     }, 
     {
         "pk": 8, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sa", 
             "d_fmt": "%d.%m.%Y", 
@@ -593,7 +593,7 @@
     }, 
     {
         "pk": 9, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sa", 
             "d_fmt": "%d.%m.%Y", 
@@ -667,7 +667,7 @@
     }, 
     {
         "pk": 10, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sa", 
             "d_fmt": "%d.%m.%Y", 
@@ -741,7 +741,7 @@
     }, 
     {
         "pk": 11, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u03a3\u03b1\u03b2", 
             "d_fmt": "%d/%m/%Y", 
@@ -815,7 +815,7 @@
     }, 
     {
         "pk": 12, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -889,7 +889,7 @@
     }, 
     {
         "pk": 13, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -963,7 +963,7 @@
     }, 
     {
         "pk": 14, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -1037,7 +1037,7 @@
     }, 
     {
         "pk": 15, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -1111,7 +1111,7 @@
     }, 
     {
         "pk": 16, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -1185,7 +1185,7 @@
     }, 
     {
         "pk": 17, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%m/%d/%Y", 
@@ -1259,7 +1259,7 @@
     }, 
     {
         "pk": 18, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "s\u00e1b", 
             "d_fmt": "%d/%m/%Y", 
@@ -1333,7 +1333,7 @@
     }, 
     {
         "pk": 19, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "L", 
             "d_fmt": "%d.%m.%Y", 
@@ -1407,7 +1407,7 @@
     }, 
     {
         "pk": 20, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "lr.", 
             "d_fmt": "%Y/%m/%d", 
@@ -1481,7 +1481,7 @@
     }, 
     {
         "pk": 21, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "La", 
             "d_fmt": "%d.%m.%Y", 
@@ -1555,7 +1555,7 @@
     }, 
     {
         "pk": 22, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sam", 
             "d_fmt": "%d.%m.%Y", 
@@ -1629,7 +1629,7 @@
     }, 
     {
         "pk": 23, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sam", 
             "d_fmt": "%d.%m.%Y", 
@@ -1703,7 +1703,7 @@
     }, 
     {
         "pk": 24, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sam", 
             "d_fmt": "%d.%m.%Y", 
@@ -1777,7 +1777,7 @@
     }, 
     {
         "pk": 25, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sam", 
             "d_fmt": "%d.%m.%Y", 
@@ -1851,7 +1851,7 @@
     }, 
     {
         "pk": 26, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u05e9'", 
             "d_fmt": "%d/%m/%y", 
@@ -1925,7 +1925,7 @@
     }, 
     {
         "pk": 27, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Su", 
             "d_fmt": "%d.%m.%Y", 
@@ -1999,7 +1999,7 @@
     }, 
     {
         "pk": 28, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Szo", 
             "d_fmt": "%Y/%m/%d", 
@@ -2073,7 +2073,7 @@
     }, 
     {
         "pk": 29, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0547\u0562\u0569", 
             "d_fmt": "%d.%m.%Y", 
@@ -2147,7 +2147,7 @@
     }, 
     {
         "pk": 30, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "lau", 
             "d_fmt": "%d.%m.%Y", 
@@ -2221,7 +2221,7 @@
     }, 
     {
         "pk": 31, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sab", 
             "d_fmt": "%d.%m.%Y", 
@@ -2295,7 +2295,7 @@
     }, 
     {
         "pk": 32, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sab", 
             "d_fmt": "%d.%m.%Y", 
@@ -2369,7 +2369,7 @@
     }, 
     {
         "pk": 33, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u571f", 
             "d_fmt": "%Y/%m/%d", 
@@ -2443,7 +2443,7 @@
     }, 
     {
         "pk": 34, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0441\u043d", 
             "d_fmt": "%d.%m.%Y", 
@@ -2517,7 +2517,7 @@
     }, 
     {
         "pk": 35, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\ud1a0", 
             "d_fmt": "%Y/%m/%d", 
@@ -2591,7 +2591,7 @@
     }, 
     {
         "pk": 36, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0160t", 
             "d_fmt": "%Y.%m.%d", 
@@ -2665,7 +2665,7 @@
     }, 
     {
         "pk": 37, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "za", 
             "d_fmt": "%d-%m-%Y", 
@@ -2739,7 +2739,7 @@
     }, 
     {
         "pk": 38, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "za", 
             "d_fmt": "%d-%m-%Y", 
@@ -2813,7 +2813,7 @@
     }, 
     {
         "pk": 39, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "l\u00f8r", 
             "d_fmt": "%d.%m.%Y", 
@@ -2887,7 +2887,7 @@
     }, 
     {
         "pk": 40, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "sob", 
             "d_fmt": "%Y.%m.%d", 
@@ -2961,7 +2961,7 @@
     }, 
     {
         "pk": 41, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "S\u00e1b", 
             "d_fmt": "%d/%m/%Y", 
@@ -3035,7 +3035,7 @@
     }, 
     {
         "pk": 42, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "S\u00e1b", 
             "d_fmt": "%d.%m.%Y", 
@@ -3109,7 +3109,7 @@
     }, 
     {
         "pk": 43, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "S\u00e2m", 
             "d_fmt": "%d.%m.%Y", 
@@ -3183,7 +3183,7 @@
     }, 
     {
         "pk": 44, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0441\u0431", 
             "d_fmt": "%d.%m.%Y", 
@@ -3257,7 +3257,7 @@
     }, 
     {
         "pk": 45, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "so ", 
             "d_fmt": "%d.%m.%Y", 
@@ -3331,7 +3331,7 @@
     }, 
     {
         "pk": 46, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "sob", 
             "d_fmt": "%d.%m.%Y", 
@@ -3405,7 +3405,7 @@
     }, 
     {
         "pk": 47, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0441\u0443\u0431", 
             "d_fmt": "%d.%m.%Y", 
@@ -3479,7 +3479,7 @@
     }, 
     {
         "pk": 48, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "L\u00f6r", 
             "d_fmt": "%d.%m.%Y", 
@@ -3553,7 +3553,7 @@
     }, 
     {
         "pk": 49, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Cts", 
             "d_fmt": "%d/%m/%Y", 
@@ -3627,7 +3627,7 @@
     }, 
     {
         "pk": 50, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u0441\u0431", 
             "d_fmt": "%d.%m.%Y", 
@@ -3701,7 +3701,7 @@
     }, 
     {
         "pk": 51, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u516d", 
             "d_fmt": "%Y/%m/%d", 
@@ -3775,7 +3775,7 @@
     }, 
     {
         "pk": 52, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u516d", 
             "d_fmt": "%Y/%m/%d", 
@@ -3849,7 +3849,7 @@
     }, 
     {
         "pk": 53, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "\u516d", 
             "d_fmt": "%Y/%m/%d", 
@@ -3923,7 +3923,7 @@
     }, 
     {
         "pk": 54, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -3997,7 +3997,7 @@
     }, 
     {
         "pk": 55, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%Y-%m-%d", 
@@ -4071,7 +4071,7 @@
     }, 
     {
         "pk": 56, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%A, %B %d, %Y", 
@@ -4145,7 +4145,7 @@
     }, 
     {
         "pk": 57, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%A, %d %B, %Y", 
@@ -4219,7 +4219,7 @@
     }, 
     {
         "pk": 58, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%A %d,%B,%Y", 
@@ -4293,7 +4293,7 @@
     }, 
     {
         "pk": 59, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -4367,7 +4367,7 @@
     }, 
     {
         "pk": 60, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -4441,7 +4441,7 @@
     }, 
     {
         "pk": 61, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%m/%d/%y", 
@@ -4515,7 +4515,7 @@
     }, 
     {
         "pk": 62, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%y", 
@@ -4589,7 +4589,7 @@
     }, 
     {
         "pk": 63, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%A %d %B %Y", 
@@ -4663,7 +4663,7 @@
     }, 
     {
         "pk": 64, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%d/%m/%Y", 
@@ -4737,7 +4737,7 @@
     }, 
     {
         "pk": 65, 
-        "model": "currencies.locale", 
+        "model": "localedb.locale", 
         "fields": {
             "abday_7": "Sat", 
             "d_fmt": "%m/%d/%y", 
@@ -4811,7 +4811,7 @@
     }, 
     {
         "pk": 1, 
-        "model": "currencies.localesitedefault", 
+        "model": "localedb.localesitedefault", 
         "fields": {
             "locale": 17, 
             "site": 1

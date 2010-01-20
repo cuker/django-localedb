@@ -1,7 +1,7 @@
 from django.template import Library, Node, NodeList, Template, Context, Variable
 from django.template import TemplateSyntaxError
 
-from simplecart.currencies.models import Locale, get_locale
+from localedb.models import Locale, get_locale
 
 register = Library()
 
