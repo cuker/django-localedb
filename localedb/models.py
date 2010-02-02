@@ -92,8 +92,8 @@ class Locale(models.Model):
     #radixchar = decimal_point
     #thousep = thousands_sep
 
-    yesexpr = models.CharField(max_length=10, help_text='A regular expression that can be used with the regex function to recognize a positive response to a yes/no question.')
-    noexpr = models.CharField(max_length=10, help_text='A regular expression that can be used with the regex(3) function to recognize a negative response to a yes/no question.')
+    yesexpr = models.CharField(max_length=20, help_text='A regular expression that can be used with the regex function to recognize a positive response to a yes/no question.')
+    noexpr = models.CharField(max_length=20, help_text='A regular expression that can be used with the regex(3) function to recognize a negative response to a yes/no question.')
 
     #crncystr ?    
 
