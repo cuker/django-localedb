@@ -41,8 +41,8 @@ class Locale(models.Model):
                                 If the sequence terminates with a 0, the last group size is repeatedly used.''')
 
     #below are other fields, namely date and time related info
-    codeset = models.CharField(max_length=10, help_text='The name of the character encoding used in the selected locale.') #this sould be equal to the encoding of the database, or a subset
-    d_t_fmt = models.CharField(max_length=25, help_text='The string that can be used as a format string for strftime() to represent time and date in a locale-specific way.')
+    codeset = models.CharField(max_length=15, help_text='The name of the character encoding used in the selected locale.') #this sould be equal to the encoding of the database, or a subset
+    d_t_fmt = models.CharField(max_length=30, help_text='The string that can be used as a format string for strftime() to represent time and date in a locale-specific way.')
     d_fmt = models.CharField(max_length=20, help_text='The string that can be used as a format string for strftime() to represent a date in a locale-specific way.')
     t_fmt = models.CharField(max_length=20, help_text='The string that can be used as a format string for strftime() to represent a time in a locale-specific way.')
     t_fmt_ampm = models.CharField(max_length=25, help_text='The format string for strftime() to represent time in the am/pm format.')
