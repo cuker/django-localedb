@@ -130,6 +130,8 @@ class Locale(models.Model):
         raise NotImplementedError
     
     def currency(self, val, symbol=True, grouping=False, international=False):
+        """Formats val according to the currency settings
+        in the current locale."""
         value = Decimal(str(val))
         q = Decimal(10) ** -self.int_frac_digits     # 2 places --> '0.01'
         neg, digits, exp = value.quantize(q).as_tuple()
@@ -207,13 +209,25 @@ class Locale(models.Model):
         return u''.join(reversed(result))
     
     def str(self, val):
-        raise NotImplementedError
+        """Convert float to integer, taking the locale into account."""
+        return self.format("%.12g", val)
     
-    def atof(self, val):
-        raise NotImplementedError
+    def atof(self, string, func=float):
+        "Parses a string as a float according to the locale settings."
+        #First, get rid of the grouping
+        ts = self.thousands_sep
+        if ts:
+            string = string.replace(ts, '')
+        #next, replace the decimal point with a dot
+        dd = self.decimal_point
+        if dd:
+            string = string.replace(dd, '.')
+        #finally, parse the string
+        return func(string)
     
-    def atoi(self, val):
-        raise NotImplementedError
+    def atoi(self, str):
+        "Converts a string to an integer according to the locale settings."
+        return self.atof(str, int)
     
     def locale_name(self):
         return str('%s.%s' % (self.name, self.codeset))
