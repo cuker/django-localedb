@@ -209,6 +209,9 @@ class TestFrFRNumberFormatting(BaseFormattingTest):
         self._test_currency(50000, "50 000,00 EUR ",
             grouping=True, international=True)
 
+    def test_atof(self):
+        self.assertEqual(self.locale.atof('12 345,67'), 12345.67)
+
 
 class TestStringMethods(BaseLocalizedTest):
     # locale_type = locale.LC_CTYPE

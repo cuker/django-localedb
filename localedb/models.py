@@ -95,13 +95,8 @@ class Locale(models.Model):
     abmon_11 = models.CharField(_('abbreviated month 11'), max_length=20, help_text=_("The abbreviated name of the n-th month."))
     abmon_12 = models.CharField(_('abbreviated month 12'), max_length=20, help_text=_("The abbreviated name of the n-th month."))
     
-    #radixchar = decimal_point
-    #thousep = thousands_sep
-    
     yesexpr = models.CharField(_('yes expresion'), max_length=20, help_text=_("A regular expression that can be used with the regex function to recognize a positive response to a yes/no question."))
     noexpr = models.CharField(_('no expresion'), max_length=20, help_text=_("A regular expression that can be used with the regex(3) function to recognize a negative response to a yes/no question."))
-    
-    #crncystr ?
     
     era = models.CharField(_('era'), max_length=10, blank=True, help_text=_("A string that represents the era used in the current locale."))
     era_year = models.CharField(_('era year'), max_length=10, blank=True, help_text=_("The year in the relevant era of the locale."))
