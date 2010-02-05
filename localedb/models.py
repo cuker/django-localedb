@@ -20,7 +20,7 @@ class Locale(models.Model):
     #below are fields for numarical representations
     mon_decimal_point = models.CharField(_('monetary decimal point'), max_length=2, blank=True, help_text=_("Decimal point used for monetary values."))
     mon_thousands_sep = models.CharField(_('monetary thousands seperator'), max_length=2, blank=True, help_text=_("Group separator used for monetary values."))
-    mon_grouping = models.CharField(_('monetary grouping'), max_length=256, blank=True, help_text=_("Equivalent to 'grouping', used for monetary values."))
+    mon_grouping = models.CommaSeparatedIntegerField(_('monetary grouping'), max_length=256, blank=True, default='127', help_text=_("Equivalent to 'grouping', used for monetary values."))
     
     currency_symbol = models.CharField(_('currency symbol'), max_length=4, blank=True, help_text=_("Local currency symbol."))
     frac_digits = models.PositiveIntegerField(_('fractional digits'), help_text=_("Number of fractional digits used in formatting of monetary values."))
@@ -41,7 +41,7 @@ class Locale(models.Model):
     positive_sign = models.CharField(_('positive sign'), max_length=2, blank=True, help_text=_("Symbol used to annotate a positive monetary value."))
     negative_sign = models.CharField(_('negative sign'), max_length=2, blank=True, help_text=_("Symbol used to annotate a negative monetary value."))
     
-    grouping = models.CommaSeparatedIntegerField(_('grouping'), max_length=256, blank=True,
+    grouping = models.CommaSeparatedIntegerField(_('grouping'), max_length=256, blank=True, default='127',
                                 help_text=_("""Sequence of numbers specifying which relative positions the 'thousands_sep' is expected.
                                 If the sequence is terminated with CHAR_MAX, no further grouping is performed.
                                 If the sequence terminates with a 0, the last group size is repeatedly used."""))
@@ -124,9 +124,11 @@ class Locale(models.Model):
     def __unicode__(self):
         return self.name
     
+    def _comma_int_list(self, data):
+        return [int(i) for i in data.split(',')]
+    
     # Iterate over grouping intervals
     def _grouping_intervals(self, grouping):
-        grouping = [int(i) for i in grouping.split(',')]
         for interval in grouping:
             # if grouping is -1, we are done
             if interval == self.CHAR_MAX:
@@ -142,7 +144,7 @@ class Locale(models.Model):
     def _group(self, s, monetary=False):
         thousands_sep = self.mon_thousands_sep if monetary else self.thousands_sep
         # thousands_sep = conv[monetary and 'mon_thousands_sep' or 'thousands_sep']
-        grouping = self.mon_grouping if monetary else self.grouping
+        grouping = self._comma_int_list(self.mon_grouping) if monetary else self._comma_int_list(self.grouping)
         # grouping = conv[monetary and 'mon_grouping' or 'grouping']
         if not grouping:
             return (s, 0)
@@ -183,14 +185,6 @@ class Locale(models.Model):
             rpos -= 1
             amount -= 1
         return s[lpos:rpos+1]
-    
-    # CONSIDER: Is this a needed method? Not in locale.py
-    def mon_grouping_list(self):
-        return [int(i) for i in self.mon_grouping.split(',')]
-    
-    # CONSIDER: Is this a needed method? Not in locale.py
-    def grouping_list(self):
-        return [int(i) for i in self.grouping.split(',')]
     
     # CONSIDER: This seems to have been replaced by class variables
     def localconv(self):

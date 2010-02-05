@@ -1,11 +1,28 @@
+# -*- coding: utf-8 -*-
 from django.test import TestCase
-from django import template
+# from django import template
 
-from models import Locale
+from models import Locale, get_locale
 
-import mockup
+# import mockup
+import sys
 
-locale = Locale.objects.get(name='en_US')
+class BaseLocalizedTest(TestCase):
+    """
+    Base class for tests using a real locale
+    """
+    
+    # TODO: Need to think of a way to set this up
+    pass
+    # def setUp(self):
+    #     self.oldlocale = locale.setlocale(self.locale_type)
+    #     locale.setlocale(self.locale_type, enUS_locale)
+    #     if verbose:
+    #         print "testing with \"%s\"..." % enUS_locale,
+    # 
+    # def tearDown(self):
+    #     locale.setlocale(self.locale_type, self.oldlocale)
+
 
 class BaseFormattingTest(TestCase):
     """
@@ -13,17 +30,24 @@ class BaseFormattingTest(TestCase):
     """
     fixtures = ['locale_data']
 
+    def setUp(self):
+        self.locale = Locale.objects.get(name='C')
+
+    def test_current_locale(self):
+        self.assertEqual(self.locale.name, 'C')
+
     def _test_formatfunc(self, format, value, out, func, **format_opts):
         self.assertEqual(func(format, value, **format_opts), out)
 
     def _test_format(self, format, value, out, **format_opts):
-        self._test_formatfunc(format, value, out, func=locale.format, **format_opts)
+        self._test_formatfunc(format, value, out, func=self.locale.format, **format_opts)
 
     def _test_format_string(self, format, value, out, **format_opts):
-        self._test_formatfunc(format, value, out, func=locale.format_string, **format_opts)
+        self._test_formatfunc(format, value, out, func=self.locale.format_string, **format_opts)
 
     def _test_currency(self, value, out, **format_opts):
-        self.assertEqual(locale.currency(value, **format_opts), out)
+        self.assertEqual(self.locale.currency(value, **format_opts), out)
+
 
 class EnUSNumberFormatting(BaseFormattingTest):
     """
@@ -32,8 +56,12 @@ class EnUSNumberFormatting(BaseFormattingTest):
     """
 
     def setUp(self):
-        locale = Locale.objects.get(name='en_US')
-        self.sep = locale.thousands_sep
+        BaseFormattingTest.setUp(self)
+        self.locale = Locale.objects.get(name='en_US')
+        self.sep = self.locale.thousands_sep
+
+    def test_current_locale(self):
+        self.assertEqual(self.locale.name, 'en_US')
 
     def test_grouping(self):
         self._test_format("%f", 1024, grouping=1, out='1%s024.000000' % self.sep)
@@ -97,21 +125,143 @@ class EnUSNumberFormatting(BaseFormattingTest):
                 (self.sep, self.sep))
 
 
+class TestNumberFormatting(BaseLocalizedTest, EnUSNumberFormatting):
+    # Test number formatting with a real English locale.
 
-# class TestEnUSNumberFormatting(EnUSNumberFormatting):
-#     # Test number formatting with a cooked "en_US" locale.
+    # locale_type = locale.LC_NUMERIC
+
+    def setUp(self):
+        BaseLocalizedTest.setUp(self)
+        EnUSNumberFormatting.setUp(self)
+
+
+class TestEnUSNumberFormatting(EnUSNumberFormatting):
+    # Test number formatting with a cooked "en_US" locale.
+
+    def setUp(self):
+        EnUSNumberFormatting.setUp(self)
+
+    def test_currency(self):
+        self._test_currency(50000, "$50000.00")
+        self._test_currency(50000, "$50,000.00", grouping=True)
+        self._test_currency(50000, "USD 50,000.00",
+            grouping=True, international=True)
+
+
+class TestCNumberFormatting(BaseFormattingTest):
+    # Test number formatting with a cooked "C" locale.
+
+    def test_grouping(self):
+        self._test_format("%.2f", 12345.67, grouping=True, out='12345.67')
+
+    def test_grouping_and_padding(self):
+        self._test_format("%9.2f", 12345.67, grouping=True, out=' 12345.67')
+
+
+class TestFrFRNumberFormatting(BaseFormattingTest):
+    """
+    Test number formatting with a cooked "fr_FR" locale.
+    """
+
+    def setUp(self):
+        BaseFormattingTest.setUp(self)
+        self.locale = Locale.objects.get(name='fr_FR')
+    
+    def test_current_locale(self):
+        self.assertEqual(self.locale.name, 'fr_FR')
+    
+    def test_decimal_point(self):
+        self._test_format("%.2f", 12345.67, out='12345,67')
+
+    def test_grouping(self):
+        self._test_format("%.2f", 345.67, grouping=True, out='345,67')
+        self._test_format("%.2f", 12345.67, grouping=True, out='12 345,67')
+
+    def test_grouping_and_padding(self):
+        self._test_format("%6.2f", 345.67, grouping=True, out='345,67')
+        self._test_format("%7.2f", 345.67, grouping=True, out=' 345,67')
+        self._test_format("%8.2f", 12345.67, grouping=True, out='12 345,67')
+        self._test_format("%9.2f", 12345.67, grouping=True, out='12 345,67')
+        self._test_format("%10.2f", 12345.67, grouping=True, out=' 12 345,67')
+        self._test_format("%-6.2f", 345.67, grouping=True, out='345,67')
+        self._test_format("%-7.2f", 345.67, grouping=True, out='345,67 ')
+        self._test_format("%-8.2f", 12345.67, grouping=True, out='12 345,67')
+        self._test_format("%-9.2f", 12345.67, grouping=True, out='12 345,67')
+        self._test_format("%-10.2f", 12345.67, grouping=True, out='12 345,67 ')
+
+    def test_integer_grouping(self):
+        self._test_format("%d", 200, grouping=True, out='200')
+        self._test_format("%d", 4200, grouping=True, out='4 200')
+
+    def test_integer_grouping_and_padding(self):
+        self._test_format("%4d", 4200, grouping=True, out='4 200')
+        self._test_format("%5d", 4200, grouping=True, out='4 200')
+        self._test_format("%10d", 4200, grouping=True, out='4 200'.rjust(10))
+        self._test_format("%-4d", 4200, grouping=True, out='4 200')
+        self._test_format("%-5d", 4200, grouping=True, out='4 200')
+        self._test_format("%-10d", 4200, grouping=True, out='4 200'.ljust(10))
+
+    def test_currency(self):
+        euro = u'\u20ac'
+        self._test_currency(50000, "50000,00 " + euro)
+        self._test_currency(50000, "50 000,00 " + euro, grouping=True)
+        # XXX is the trailing space a bug?
+        self._test_currency(50000, "50 000,00 EUR ",
+            grouping=True, international=True)
+
+
+class TestStringMethods(BaseLocalizedTest):
+    # locale_type = locale.LC_CTYPE
+
+    if sys.platform != 'sunos5' and not sys.platform.startswith("win"):
+        # Test BSD Rune locale's bug for isctype functions.
+
+        def test_isspace(self):
+            self.assertEqual('\x20'.isspace(), True)
+            self.assertEqual('\xa0'.isspace(), False)
+            self.assertEqual('\xa1'.isspace(), False)
+
+        def test_isalpha(self):
+            self.assertEqual('\xc0'.isalpha(), False)
+
+        def test_isalnum(self):
+            self.assertEqual('\xc0'.isalnum(), False)
+
+        def test_isupper(self):
+            self.assertEqual('\xc0'.isupper(), False)
+
+        def test_islower(self):
+            self.assertEqual('\xc0'.islower(), False)
+
+        def test_lower(self):
+            self.assertEqual('\xcc\x85'.lower(), '\xcc\x85')
+
+        def test_upper(self):
+            self.assertEqual('\xed\x95\xa0'.upper(), '\xed\x95\xa0')
+
+        def test_strip(self):
+            self.assertEqual('\xed\x95\xa0'.strip(), '\xed\x95\xa0')
+
+        def test_split(self):
+            self.assertEqual('\xec\xa0\xbc'.split(), ['\xec\xa0\xbc'])
+
+
+# class TestMiscellaneous(TestCase):
+#     def test_getpreferredencoding(self):
+#         # Invoke getpreferredencoding to make sure it does not cause exceptions.
+#         enc = locale.getpreferredencoding()
+#         if enc:
+#             # If encoding non-empty, make sure it is valid
+#             codecs.lookup(enc)
 # 
-#     def setUp(self):
-#         EnUSNumberFormatting.setUp(self)
-# 
-#     def test_currency(self):
-#         self._test_currency(50000, "$50000.00")
-#         self._test_currency(50000, "$50,000.00", grouping=True)
-#         self._test_currency(50000, "USD 50,000.00",
-#             grouping=True, international=True)
+#     if hasattr(locale, "strcoll"):
+#         def test_strcoll_3303(self):
+#             # test crasher from bug #3303
+#             self.assertRaises(TypeError, locale.strcoll, u"a", None)
 
-
-
+##
+# Old testage
+##
 # class CurrencyTestCase(TestCase):
 #     fixtures = ['locale_data']
 # 

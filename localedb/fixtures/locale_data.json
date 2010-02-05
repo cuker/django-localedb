@@ -1811,7 +1811,7 @@
             "abday_2": "Lun", 
             "p_sep_by_space": true, 
             "abday_6": "Ven", 
-            "thousands_sep": "", 
+            "thousands_sep": " ", 
             "abmon_11": "nov", 
             "t_fmt": "%H:%M:%S", 
             "era_d_fmt": "", 
@@ -1845,7 +1845,7 @@
             "abmon_2": "f\u00e9v", 
             "abmon_5": "mai", 
             "abmon_8": "ao\u00fb", 
-            "currency_symbol": "Eu", 
+            "currency_symbol": "\u20ac", 
             "mon_thousands_sep": " ", 
             "abmon_12": "d\u00e9c", 
             "negative_sign": "-", 
@@ -1871,7 +1871,7 @@
             "decimal_point": ",", 
             "p_sign_posn": 1, 
             "mon_8": "ao\u00fbt", 
-            "grouping": "127"
+            "grouping": "3,3,0"
         }
     }, 
     {
@@ -4517,7 +4517,7 @@
             "era_d_fmt": "", 
             "abmon_3": "Mar", 
             "mon_10": "October", 
-            "mon_grouping": "", 
+            "mon_grouping": "127", 
             "era_year": "", 
             "mon_11": "November", 
             "int_frac_digits": 127, 
@@ -4571,7 +4571,7 @@
             "decimal_point": ".", 
             "p_sign_posn": 127, 
             "mon_8": "August", 
-            "grouping": ""
+            "grouping": "127"
         }
     }, 
     {
@@ -4817,7 +4817,7 @@
             "era_d_fmt": "", 
             "abmon_3": "Mar", 
             "mon_10": "October", 
-            "mon_grouping": "", 
+            "mon_grouping": "127", 
             "era_year": "", 
             "mon_11": "November", 
             "int_frac_digits": 127, 
@@ -4871,7 +4871,7 @@
             "decimal_point": ".", 
             "p_sign_posn": 127, 
             "mon_8": "August", 
-            "grouping": ""
+            "grouping": "127"
         }
     }, 
     {

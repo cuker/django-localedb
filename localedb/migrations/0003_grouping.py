@@ -12,6 +12,9 @@ class Migration:
         # (to signature: django.db.models.fields.CommaSeparatedIntegerField(max_length=256, blank=True))
         db.alter_column('localedb_locale', 'grouping', orm['localedb.locale:grouping'])
         
+        # Changing field 'Locale.mon_grouping'
+        # (to signature: django.db.models.fields.CommaSeparatedIntegerField(max_length=256, blank=True))
+        db.alter_column('localedb_locale', 'mon_grouping', orm['localedb.locale:mon_grouping'])
     
     
     def backwards(self, orm):
@@ -20,6 +23,9 @@ class Migration:
         # (to signature: django.db.models.fields.CharField(max_length=256, blank=True))
         db.alter_column('localedb_locale', 'grouping', orm['localedb.locale:grouping'])
         
+        # Changing field 'Locale.mon_grouping'
+        # (to signature: django.db.models.fields.CharField(max_length=256, blank=True))
+        db.alter_column('localedb_locale', 'mon_grouping', orm['localedb.locale:mon_grouping'])
     
     
     models = {
@@ -61,7 +67,7 @@ class Migration:
             'era_d_t_fmt': ('django.db.models.fields.CharField', [], {'max_length': '25', 'blank': 'True'}),
             'era_year': ('django.db.models.fields.CharField', [], {'max_length': '10', 'blank': 'True'}),
             'frac_digits': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            'grouping': ('django.db.models.fields.CommaSeparatedIntegerField', [], {'max_length': '256', 'blank': 'True'}),
+            'grouping': ('django.db.models.fields.CommaSeparatedIntegerField', [], {'default': "'127'", 'max_length': '256', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'int_curr_symbol': ('django.db.models.fields.CharField', [], {'max_length': '4', 'blank': 'True'}),
             'int_frac_digits': ('django.db.models.fields.PositiveIntegerField', [], {}),
@@ -78,7 +84,7 @@ class Migration:
             'mon_8': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'mon_9': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'mon_decimal_point': ('django.db.models.fields.CharField', [], {'max_length': '2', 'blank': 'True'}),
-            'mon_grouping': ('django.db.models.fields.CharField', [], {'max_length': '256', 'blank': 'True'}),
+            'mon_grouping': ('django.db.models.fields.CommaSeparatedIntegerField', [], {'default': "'127'", 'max_length': '256', 'blank': 'True'}),
             'mon_thousands_sep': ('django.db.models.fields.CharField', [], {'max_length': '2', 'blank': 'True'}),
             'n_cs_precedes': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
             'n_sep_by_space': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
