@@ -30,6 +30,7 @@ setup(name='django-localedb',
       packages=find_packages(exclude=['ez_setup', 'localedb', 'tests']),
       zip_safe=False,
       install_requires=[
+        'django',
       ],
-      #test_suite='tests.test_suite',
+      test_suite='tests.runtests.runtests',
       )
