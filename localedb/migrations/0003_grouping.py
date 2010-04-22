@@ -1,35 +1,32 @@
-# -*- coding: utf-8 -*-
-
+# encoding: utf-8
+import datetime
 from south.db import db
+from south.v2 import SchemaMigration
 from django.db import models
-from localedb.models import *
 
-class Migration:
+class Migration(SchemaMigration):
     
     def forwards(self, orm):
         
-        # Changing field 'Locale.grouping'
-        # (to signature: django.db.models.fields.CommaSeparatedIntegerField(max_length=256, blank=True))
-        db.alter_column('localedb_locale', 'grouping', orm['localedb.locale:grouping'])
-        
         # Changing field 'Locale.mon_grouping'
-        # (to signature: django.db.models.fields.CommaSeparatedIntegerField(max_length=256, blank=True))
-        db.alter_column('localedb_locale', 'mon_grouping', orm['localedb.locale:mon_grouping'])
+        db.alter_column('localedb_locale', 'mon_grouping', self.gf('django.db.models.fields.CommaSeparatedIntegerField')(max_length=256, blank=True))
+
+        # Changing field 'Locale.grouping'
+        db.alter_column('localedb_locale', 'grouping', self.gf('django.db.models.fields.CommaSeparatedIntegerField')(max_length=256, blank=True))
     
     
     def backwards(self, orm):
         
-        # Changing field 'Locale.grouping'
-        # (to signature: django.db.models.fields.CharField(max_length=256, blank=True))
-        db.alter_column('localedb_locale', 'grouping', orm['localedb.locale:grouping'])
-        
         # Changing field 'Locale.mon_grouping'
-        # (to signature: django.db.models.fields.CharField(max_length=256, blank=True))
-        db.alter_column('localedb_locale', 'mon_grouping', orm['localedb.locale:mon_grouping'])
+        db.alter_column('localedb_locale', 'mon_grouping', self.gf('django.db.models.fields.CharField')(max_length=256, blank=True))
+
+        # Changing field 'Locale.grouping'
+        db.alter_column('localedb_locale', 'grouping', self.gf('django.db.models.fields.CharField')(max_length=256, blank=True))
     
     
     models = {
         'localedb.locale': {
+            'Meta': {'object_name': 'Locale'},
             'abday_1': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'abday_2': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'abday_3': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
@@ -67,7 +64,7 @@ class Migration:
             'era_d_t_fmt': ('django.db.models.fields.CharField', [], {'max_length': '25', 'blank': 'True'}),
             'era_year': ('django.db.models.fields.CharField', [], {'max_length': '10', 'blank': 'True'}),
             'frac_digits': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            'grouping': ('django.db.models.fields.CommaSeparatedIntegerField', [], {'default': "'127'", 'max_length': '256', 'blank': 'True'}),
+            'grouping': ('django.db.models.fields.CommaSeparatedIntegerField', [], {'max_length': '256', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'int_curr_symbol': ('django.db.models.fields.CharField', [], {'max_length': '4', 'blank': 'True'}),
             'int_frac_digits': ('django.db.models.fields.PositiveIntegerField', [], {}),
@@ -102,12 +99,13 @@ class Migration:
             'yesexpr': ('django.db.models.fields.CharField', [], {'max_length': '20'})
         },
         'localedb.localesitedefault': {
+            'Meta': {'object_name': 'LocaleSiteDefault'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locale': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['localedb.Locale']"}),
             'site': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['sites.Site']", 'unique': 'True'})
         },
         'sites.site': {
-            'Meta': {'db_table': "'django_site'"},
+            'Meta': {'object_name': 'Site', 'db_table': "'django_site'"},
             'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})

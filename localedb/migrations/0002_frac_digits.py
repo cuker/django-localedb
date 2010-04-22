@@ -1,27 +1,26 @@
-# -*- coding: utf-8 -*-
-
+# encoding: utf-8
+import datetime
 from south.db import db
+from south.v2 import SchemaMigration
 from django.db import models
-from localedb.models import *
 
-class Migration:
+class Migration(SchemaMigration):
     
     def forwards(self, orm):
         
         # Adding field 'Locale.frac_digits'
-        db.add_column('localedb_locale', 'frac_digits', orm['localedb.locale:frac_digits'])
-        
+        db.add_column('localedb_locale', 'frac_digits', self.gf('django.db.models.fields.PositiveIntegerField')(default=2), keep_default=False)
     
     
     def backwards(self, orm):
         
         # Deleting field 'Locale.frac_digits'
         db.delete_column('localedb_locale', 'frac_digits')
-        
     
     
     models = {
         'localedb.locale': {
+            'Meta': {'object_name': 'Locale'},
             'abday_1': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'abday_2': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'abday_3': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
@@ -94,12 +93,13 @@ class Migration:
             'yesexpr': ('django.db.models.fields.CharField', [], {'max_length': '20'})
         },
         'localedb.localesitedefault': {
+            'Meta': {'object_name': 'LocaleSiteDefault'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locale': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['localedb.Locale']"}),
             'site': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['sites.Site']", 'unique': 'True'})
         },
         'sites.site': {
-            'Meta': {'db_table': "'django_site'"},
+            'Meta': {'object_name': 'Site', 'db_table': "'django_site'"},
             'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
