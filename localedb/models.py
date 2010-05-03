@@ -265,6 +265,13 @@ class Locale(models.Model):
         """Formats val according to the currency settings
         in the current locale."""
 
+        if symbol:
+            smb = self.int_curr_symbol if international else self.currency_symbol
+            if hasattr(val, 'currency') and val.currency != smb.strip():
+                smb = val.currency
+                if self.int_curr_symbol.endswith(' '):
+                    smb += ' '
+                international = True
         # check for illegal values
         digits = self.int_frac_digits if international else self.frac_digits
         # digits = conv[international and 'int_frac_digits' or 'frac_digits']
@@ -278,7 +285,6 @@ class Locale(models.Model):
         s = '<' + s + '>'
 
         if symbol:
-            smb = self.int_curr_symbol if international else self.currency_symbol
             # smb = conv[international and 'int_curr_symbol' or 'currency_symbol']
             precedes = self.n_cs_precedes if val<0 else self.p_cs_precedes
             # precedes = conv[val<0 and 'n_cs_precedes' or 'p_cs_precedes']
@@ -356,5 +362,13 @@ class LocaleSiteDefault(models.Model):
 def get_locale(val=None):
     if hasattr(val, 'locale_name'):
         return Locale.objects.get(name=val.locale_name)
-    else:
-        return Locale.objects.get_site_locale()
+    elif hasattr(val, 'currency'): #try to fetch our language + the currency code
+        site_locale = Locale.objects.get_site_locale()
+        qs = Locale.objects.filter((models.Q(int_curr_symbol=val.currency) | 
+                                    models.Q(int_curr_symbol=(val.currency+' '))),
+                                   name__startswith=(site_locale.language_code()+'_'))
+        try:
+            return qs[0]
+        except IndexError:
+            pass
+    return Locale.objects.get_site_locale()

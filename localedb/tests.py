@@ -4,6 +4,8 @@ from django.test import TestCase
 
 from models import Locale, get_locale
 
+from decimal import Decimal
+
 # import mockup
 import sys
 
@@ -146,6 +148,14 @@ class TestEnUSNumberFormatting(EnUSNumberFormatting):
         self._test_currency(50000, "$50,000.00", grouping=True)
         self._test_currency(50000, "USD 50,000.00",
             grouping=True, international=True)
+
+    def test_differing_currency_code(self):
+        class Money(Decimal):
+            def __init__(self, value, currency):
+                super(Money, self).__init__(value)
+                self.currency = currency
+        five_thousand_gbp = Money(5000, 'GBP')
+        self._test_currency(five_thousand_gbp, "GBP 5000.00")
 
 
 class TestCNumberFormatting(BaseFormattingTest):
