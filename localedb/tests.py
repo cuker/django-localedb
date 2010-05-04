@@ -156,6 +156,8 @@ class TestEnUSNumberFormatting(EnUSNumberFormatting):
                 self.currency = currency
         five_thousand_gbp = Money(5000, 'GBP')
         self._test_currency(five_thousand_gbp, "GBP 5000.00")
+        five_thousand_usd = Money(5000, 'USD')
+        self._test_currency(five_thousand_usd, "$5000.00")
 
 
 class TestCNumberFormatting(BaseFormattingTest):
