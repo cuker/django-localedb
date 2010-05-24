@@ -364,7 +364,10 @@ def get_locale(val=None):
         return Locale.objects.get(name=val.locale_name)
     elif hasattr(val, 'currency'): #try to fetch our language + the currency code
         site_locale = Locale.objects.get_site_locale()
-        currency = str(val.currency)
+        if hasattr(val.currency, 'code'):
+            currency = val.currency.code
+        else:
+            currency = str(val.currency)
         qs = Locale.objects.filter((models.Q(int_curr_symbol=currency) | 
                                     models.Q(int_curr_symbol=(currency+' '))),
                                    name__startswith=(site_locale.language_code()+'_'))
