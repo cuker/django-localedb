@@ -150,10 +150,13 @@ class TestEnUSNumberFormatting(EnUSNumberFormatting):
             grouping=True, international=True)
 
     def test_differing_currency_code(self):
+        class Currency(object):
+            def __init__(self, code):
+                self.code = code
         class Money(Decimal):
             def __init__(self, value, currency):
                 super(Money, self).__init__(value)
-                self.currency = currency
+                self.currency = Currency(currency)
         five_thousand_gbp = Money(5000, 'GBP')
         self._test_currency(five_thousand_gbp, "GBP 5000.00")
         five_thousand_usd = Money(5000, 'USD')
