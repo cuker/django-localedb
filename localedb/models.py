@@ -267,8 +267,8 @@ class Locale(models.Model):
 
         if symbol:
             smb = self.int_curr_symbol if international else self.currency_symbol
-            if hasattr(val, 'currency') and str(val.currency) != self.int_curr_symbol.strip():
-                smb = str(val.currency)
+            if hasattr(val, 'currency') and str(val.currency.code) != self.int_curr_symbol.strip():
+                smb = str(val.currency.code)
                 if self.int_curr_symbol.endswith(' '):
                     smb += ' '
                 international = True
