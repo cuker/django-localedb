@@ -13,6 +13,10 @@ def currency(value, locale_name=None):
         try:
             locale = get_locale(value)
         except Locale.DoesNotExist:
+            if hasattr(value, 'currency') and hasattr(value, 'amount'):
+                if hasattr(value.currency, 'code'):
+                    return u'%s %s' % (value.currency.code, value.amount)
+                return u'%s %s' % (value.currency, value.amount)
             return value
     return locale.currency(value)
 
