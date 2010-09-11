@@ -18,7 +18,7 @@ class LocaleManager(models.Manager):
             current_locale = LOCALE_CACHE[settings.SITE_ID]
         except KeyError:
             current_locale = Locale.objects.get(localesitedefault__site__pk=settings.SITE_ID)
-            LOCALE_CACHE[sid] = current_locale
+            LOCALE_CACHE[settings.SITE_ID] = current_locale
         return current_locale
     
     def lookup_by_currency(self, currency):
