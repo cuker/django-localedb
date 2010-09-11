@@ -10,9 +10,21 @@ from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+LOCALE_CACHE = {}
+
 class LocaleManager(models.Manager):
     def get_site_locale(self):
-        return Locale.objects.get(localesitedefault__site__pk=settings.SITE_ID)
+        try:
+            current_locale = LOCALE_CACHE[settings.SITE_ID]
+        except KeyError:
+            current_locale = Locale.objects.get(localesitedefault__site__pk=settings.SITE_ID)
+            LOCALE_CACHE[sid] = current_locale
+        return current_locale
+    
+    def clear_cache(self):
+        """Clears the ``Locale`` object cache."""
+        global LOCALE_CACHE
+        LOCALE_CACHE = {}
 
 class Locale(models.Model):
     name = models.CharField(_('name'), max_length=10, unique=True)
