@@ -21,6 +21,25 @@ class LocaleManager(models.Manager):
             LOCALE_CACHE[sid] = current_locale
         return current_locale
     
+    def lookup_by_currency(self, currency):
+        site_locale = locale = Locale.objects.get_site_locale()
+        if hasattr(currency, 'code'):
+            currency = str(currency.code)
+        else:
+            currency = str(currency)
+        try:
+            locale = LOCALE_CACHE[currency]
+        except KeyError:
+            qs = Locale.objects.filter((models.Q(int_curr_symbol=currency) | 
+                                        models.Q(int_curr_symbol=(currency+' '))),
+                                       name__startswith=(site_locale.language_code()+'_'))
+            try:
+                locale = qs[0]
+            except IndexError:
+                pass
+            LOCALE_CACHE[currency] = locale
+        return locale
+    
     def clear_cache(self):
         """Clears the ``Locale`` object cache."""
         global LOCALE_CACHE
@@ -375,16 +394,5 @@ def get_locale(val=None):
     if hasattr(val, 'locale_name'):
         return Locale.objects.get(name=val.locale_name)
     elif hasattr(val, 'currency'): #try to fetch our language + the currency code
-        site_locale = Locale.objects.get_site_locale()
-        if hasattr(val.currency, 'code'):
-            currency = val.currency.code
-        else:
-            currency = str(val.currency)
-        qs = Locale.objects.filter((models.Q(int_curr_symbol=currency) | 
-                                    models.Q(int_curr_symbol=(currency+' '))),
-                                   name__startswith=(site_locale.language_code()+'_'))
-        try:
-            return qs[0]
-        except IndexError:
-            pass
+        return Locale.objects.lookup_by_currency(val.currency)
     return Locale.objects.get_site_locale()
