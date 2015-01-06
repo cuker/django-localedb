@@ -58,16 +58,16 @@ class Locale(models.Model):
     int_curr_symbol = models.CharField(_('international currency symbal'), max_length=4, blank=True, help_text=_("International currency symbol."))
     int_frac_digits = models.PositiveIntegerField(_('international fractional digits'), help_text=_("Number of fractional digits used in international formatting of monetary values."))
 
-    p_sep_by_space = models.BooleanField(_('positive seperate by space'), help_text=_("Whether the currency symbol is separated from the value by a space for positive values."))
-    n_sep_by_space = models.BooleanField(_('negative seperate by space'), help_text=_("Whether the currency symbol is separated from the value by a space for negative values."))
+    p_sep_by_space = models.BooleanField(_('positive seperate by space'), help_text=_("Whether the currency symbol is separated from the value by a space for positive values."), default=False)
+    n_sep_by_space = models.BooleanField(_('negative seperate by space'), help_text=_("Whether the currency symbol is separated from the value by a space for negative values."), default=False)
 
     thousands_sep = models.CharField(_('thousands seperator'), max_length=2, blank=True, help_text=_("Character used between groups."))
     p_sign_posn = models.PositiveSmallIntegerField(help_text=_("The position of the sign positive values."))
     n_sign_posn = models.PositiveSmallIntegerField(help_text=_("The position of the sign negative values."))
     decimal_point = models.CharField(_('decimal point'), max_length=2, help_text=_("Decimal point character."))
 
-    p_cs_precedes = models.BooleanField(help_text=_("Whether the currency symbol precedes the value for positive values."))
-    n_cs_precedes = models.BooleanField(help_text=_("Whether the currency symbol precedes the value for negative values."))
+    p_cs_precedes = models.BooleanField(help_text=_("Whether the currency symbol precedes the value for positive values."), default=False)
+    n_cs_precedes = models.BooleanField(help_text=_("Whether the currency symbol precedes the value for negative values."), default=False)
 
     positive_sign = models.CharField(_('positive sign'), max_length=2, blank=True, help_text=_("Symbol used to annotate a positive monetary value."))
     negative_sign = models.CharField(_('negative sign'), max_length=2, blank=True, help_text=_("Symbol used to annotate a negative monetary value."))
